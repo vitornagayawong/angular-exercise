@@ -1,1 +1,41 @@
-<p>aluno-list works!</p>
+<div class="container">
+    <div class="row">
+        <div class="cols-12">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @for (aluno of listaAlunos; track $index) {
+                    <tr>
+                        <td>{{ aluno.id }}</td>
+                        <td>{{ aluno.nome }}</td>
+                        <td>
+                            <button (click)="editar()">Editar</button>
+                            <button (click)="deletar(aluno)" >Deletar</button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<ng-template #modalAlunosDetalhe>
+
+    <div class="modal-header">
+      <h5 class="modal-title" id="exampleModalLabel">Cadastro</h5>
+      <button type="button" class="btn-close" aria-label="Close" (click)="modalRef.close()"></button>
+    </div>
+    <div class="modal-body">
+  
+     <app-aluno-details [aluno]="alunoEdit" (retorno)="retornoDetalhe($event)"></app-aluno-details>
+  
+    </div>
+  
+  </ng-template>
